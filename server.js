@@ -4,9 +4,9 @@ var bodyParser = require('body-parser')
 var cons = require('consolidate');
 
 var app = express();
-var url = process.env.URL || "REPLACEME";
-var dbName = process.env.DBNAME || "REPLACEME";
-var port = process.env.PORT || 8000;
+var url = process.env.URL || "mongodb://localhost";
+var dbName = process.env.DBNAME || "base";
+var port = process.env.PORT || 8080;
 
 app.engine('html', cons.pug);
 app.set('view engine', 'html');
@@ -26,6 +26,7 @@ MongoClient.connect(url, function(err, client) {
   app.listen(port, function() {
     console.log("now listening on http://localhost:" + port)
   });
+	
 });
 
 module.exports = app;
